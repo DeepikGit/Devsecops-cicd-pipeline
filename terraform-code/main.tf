@@ -19,3 +19,23 @@ module "private_subnet_01" {
   availability_zone = "ap-northeast-3a"
   vpc_id = module.vpc.vpc_id
 }
+
+module "igw" {
+  source = "./modules/igw"
+  vpc_id = module.vpc.vpc_id
+  name   = "onmo-igw"
+}
+
+module "route_table" {
+  source = "./modules/route_table"
+  vpc_id = module.vpc.vpc_id
+  igw_id = module.igw.igw_id
+  name   = "onmo-route-table"
+}
+
+module "route_table_association_public" {
+  source          = "./modules/route_table_association"
+  subnet_id       = module.public_subnet_01.subnet_id
+  route_table_id  = module.route_table.route_table_id
+}
+
