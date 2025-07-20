@@ -1,0 +1,12 @@
+# .gitignore
+
+# Terraform
+
+terrform-code/.terraform
+terraform-code/*.tfstate.*
+terraform-code/.terraform.lock.hcl
+terraform-code/.crash
+terraform-code/*.log
+terraform-code/*.backup
+
+
