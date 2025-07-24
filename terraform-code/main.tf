@@ -39,3 +39,42 @@ module "route_table_association_public" {
   route_table_id  = module.route_table.route_table_id
 }
 
+module "security_group" {
+  source      = "./modules/security_group"
+  name        = "onmo-security-group"
+  description = "Security group for onmo application"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress_rules = [
+    {
+      description = "Allow HTTP traffic from anywhere"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    { 
+      description = "Allow HTTPS traffic from anywhere"
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      description = "Allow SSH traffic from anywhere"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+  egress_rules = [
+    {
+      description = "Allow all outbound traffic"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
