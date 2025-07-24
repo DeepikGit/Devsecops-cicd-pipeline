@@ -90,3 +90,4 @@ module "ec2_web_server" {
   associate_public_ip_address = true
   user_data         = "echo 'Hello, World!' > /var/www/html/index.html" # Example user data script
 }
+
