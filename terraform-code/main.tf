@@ -78,3 +78,15 @@ module "security_group" {
     }
   ]
 }
+
+module "ec2_web_server" {
+  source            = "./modules/ec2_instance"
+  name              = var.name
+  ami               = var.ami # Replace with a valid AMI ID
+  instance_type     = var.instance_type
+  subnet_id         = module.public_subnet_01.subnet_id
+  vpc_security_group_ids = [module.security_group.sg_id]
+  key_name          = var.key_name
+  associate_public_ip_address = true
+  user_data         = "echo 'Hello, World!' > /var/www/html/index.html" # Example user data script
+}
