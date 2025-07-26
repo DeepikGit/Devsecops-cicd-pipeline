@@ -66,6 +66,13 @@ module "security_group" {
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+    },
+     {
+      description = "Allow tomcat traffic from anywhere"
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
     }
   ]
   egress_rules = [
