@@ -11,8 +11,7 @@ on:
 jobs:
   build:
 
-    runs-on: ip-10-11-1-123
-
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
