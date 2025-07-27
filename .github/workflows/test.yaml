@@ -1,0 +1,17 @@
+name: Unit-Tests
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        run: echo "Checking out code..."
+        uses: actions/checkout@v3
+
+      - name: unit test
+        run:
+          echo "Running unit tests..."
+          mvn test
