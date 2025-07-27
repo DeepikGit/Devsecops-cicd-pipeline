@@ -8,7 +8,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        run: echo "Checking out code..."
         uses: actions/checkout@v3
 
       - name: unit test
