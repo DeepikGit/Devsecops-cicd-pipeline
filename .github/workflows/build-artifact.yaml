@@ -13,6 +13,7 @@ jobs:
       - name: List Target Artifacts
         run: ls -lh target/
 
+# archive the artifacts locally 
       - name: Archive Target Artifacts (local directory in runner _work space)
         run: |
           mkdir -p archive
@@ -21,8 +22,8 @@ jobs:
       
       - name: List Archived Artifacts
         run: ls -lh archive/
-
-
+        
+# archive the artifacts remotely in github
 
       - name: Archive JAR from target directory (github remote artifact)
         uses: actions/upload-artifact@v4

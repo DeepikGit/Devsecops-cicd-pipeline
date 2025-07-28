@@ -17,11 +17,11 @@ jobs:
     uses: ./.github/workflows/snyk.yaml
     secrets: inherit
 
-  build:
+  buildAndArchive:
     uses: ./.github/workflows/build-artifact.yaml
 
   # combined this with build-artifact
-  
+
   # archive-artifact:
   #  uses: ./.github/workflows/archive-artifact.yaml
  
