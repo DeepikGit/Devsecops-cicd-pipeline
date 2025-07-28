@@ -13,13 +13,15 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Run Snyk Scan (termonal output)
+      - name: Run Snyk Scan (terminal output)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --file=pom.xml --package-manager=maven
+        run: | 
+          export SNYK_MAVEN_BINARY=mvn
+          snyk test --file=pom.xml --package-manager=maven
 
 
       - name: Monitor with Snyk (Push to Dashboard)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk monitor --file=pom.xml
+        run: snyk monitor --file=pom.xml --package-manager=maven
