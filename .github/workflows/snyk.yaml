@@ -16,7 +16,7 @@ jobs:
       - name: Run Snyk Scan (termonal output)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --all-projects --package-manager=maven
+        run: snyk test --file=pom.xml --package-manager=maven
 
 
       - name: Monitor with Snyk (Push to Dashboard)
