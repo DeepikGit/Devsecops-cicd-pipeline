@@ -13,4 +13,6 @@ jobs:
     uses: ./.github/workflows/sonar.yaml
     secrets: inherit
   
-
+  synk-test:
+    uses: ./.github/workflows/snyk.yaml
+    secrets: inherit
