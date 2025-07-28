@@ -1,4 +1,4 @@
-name: build artifact
+name: build and archive artifact local and remote
 
 on:
   workflow_call
@@ -12,3 +12,20 @@ jobs:
       
       - name: List Target Artifacts
         run: ls -lh target/
+
+      - name: Archive Target Artifacts (local directory in runner _work space)
+        run: |
+          mkdir -p archive
+          cp target/*.jar archive/
+          echo "Artifacts archived in 'archive' directory."
+      
+      - name: List Archived Artifacts
+        run: ls -lh archive/
+
+
+
+      - name: Archive JAR from target directory (github remote artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: target/*.jar        

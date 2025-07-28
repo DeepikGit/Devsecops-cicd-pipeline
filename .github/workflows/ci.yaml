@@ -20,7 +20,10 @@ jobs:
   build:
     uses: ./.github/workflows/build-artifact.yaml
 
-  archive-artifact:
-    uses: ./.github/workflows/archive-artifact.yaml
+  # combined this with build-artifact
+  
+  # archive-artifact:
+  #  uses: ./.github/workflows/archive-artifact.yaml
+ 
 
   
