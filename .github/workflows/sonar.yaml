@@ -11,7 +11,7 @@ jobs:
         run: |
           mvn verify sonar:sonar \
             -Dsonar.organization=deepikgit \
-            -Dsonar.projectName="DevSecOps Pipeline"
+            -Dsonar.projectName="DevSecOps Pipeline" \
             -Dsonar.projectKey=DeepikGit_Devsecops-cicd-pipeline \
             -Dsonar.host.url=https://sonarcloud.io/ \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
