@@ -16,9 +16,8 @@ jobs:
       - name: Run Snyk Scan (terminal output)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: | 
-          export SNYK_MAVEN_BINARY=mvn
-          snyk test --file=pom.xml --package-manager=maven
+          SNYK_MAVEN_BINARY: mvn
+        run: snyk test --file=pom.xml --package-manager=maven
 
 
       - name: Monitor with Snyk (Push to Dashboard)
