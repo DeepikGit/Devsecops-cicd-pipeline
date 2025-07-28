@@ -1,0 +1,27 @@
+name: SonarQube Scan
+
+on:
+  workflow_call:
+
+jobs:
+  sonar:
+    runs-on: self-hosted
+    steps:
+      - name: SonarQube Scan (Maven)
+        run: |
+          mvn verify sonar:sonar \
+            -Dsonar.organization=deepikgit \
+            -Dsonar.projectName="DevSecOps Pipeline"
+            -Dsonar.projectKey=DeepikGit_Devsecops-cicd-pipeline \
+            -Dsonar.host.url=https://sonarcloud.io/ \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+
+      - name: SonarQube Scan (CLI)
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=DeepikGit_Devsecops-cicd-pipeline \
+          -Dsonar.organization=deepikgit \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.sources=src
