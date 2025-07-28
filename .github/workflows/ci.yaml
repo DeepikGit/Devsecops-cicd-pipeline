@@ -16,3 +16,11 @@ jobs:
   synk-test:
     uses: ./.github/workflows/snyk.yaml
     secrets: inherit
+
+  build:
+    uses: ./.github/workflows/build-artifact.yaml
+
+  archive-artifact:
+    uses: ./.github/workflows/archive-artifact.yaml
+
+  

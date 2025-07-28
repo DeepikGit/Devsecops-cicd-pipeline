@@ -1,0 +1,23 @@
+name: archive-artifact for github
+
+on:
+  workflow_call:
+
+jobs:
+  archive-artifact:
+    runs-on: self-hosted
+    steps:
+      - name: Archive Target Artifacts (local directory in runner _work space)
+        run: |
+          mkdir -p archive
+          cp target/*.jar archive/
+          echo "Artifacts archived in 'archive' directory."
+      
+      - name: List Archived Artifacts
+        run: ls -lh archive/
+
+      - name: Archive JAR from target directory (github remote artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: target/*.jar
