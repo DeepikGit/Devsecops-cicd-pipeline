@@ -1,0 +1,39 @@
+name: jfrog upload artifact
+
+on:
+  workflow_call
+
+jobs:
+  jfrog-upload:
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+          path: target
+
+      - name: Set up JFrog CLI
+        run: |
+          curl -fL https://getcli.jfrog.io | sh
+          chmod +x jf
+          mv jf /usr/local/bin/jf
+        
+      - name: Configure JFrog CLI
+        run: |
+          jf config add artifactory-server \
+          --artifactory-url=${{ secrets.JFROG_URL }} \
+          --user=${{ secrets.JFROG_USERNAME }} \
+          --apikey=${{ secrets.JFROG_TOKEN }} \
+          -interactive=false
+
+      - name: Upload Artifact [jar artifact]
+        run: |
+          jf rt u "target/*.jar" "onmo-sports-jf-repo" \
+          --build-name=petclinic \
+          --build-number=${{ github.run_number }}
