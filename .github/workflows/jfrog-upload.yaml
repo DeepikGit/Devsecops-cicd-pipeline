@@ -21,8 +21,8 @@ jobs:
       - name: Set up JFrog CLI
         run: |
           curl -fL https://getcli.jfrog.io | sh
-          chmod +x jf
-          mv jf /usr/local/bin/jf
+          chmod +x jfrog
+          mv jfrog /usr/local/bin/jf
         
       - name: Configure JFrog CLI
         run: |
