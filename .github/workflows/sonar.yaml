@@ -12,7 +12,7 @@ jobs:
       
       - name: SonarQube Scan (Maven)
         run: |
-          mvn compile sonar:sonar -DskipTests\
+            mvn compile sonar:sonar -DskipTests\
             -Dsonar.organization=deepikgit \
             -Dsonar.projectName="DevSecOps Pipeline" \
             -Dsonar.projectKey=DeepikGit_Devsecops-cicd-pipeline \
