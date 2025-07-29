@@ -6,13 +6,19 @@ on:
 jobs:
   docker-build:
     runs-on: self-hosted
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         
       - name: Set Docker Tag
         run: echo "TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Download JAR Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+          path: target
 
       - name: Build Docker Image
         run: docker build -f ./Dockerfile -t petclinic:${{ env.TAG }} .
