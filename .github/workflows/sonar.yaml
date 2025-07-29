@@ -7,6 +7,9 @@ jobs:
   sonar:
     runs-on: self-hosted
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
       - name: SonarQube Scan (Maven)
         run: |
           mvn compile sonar:sonar -DskipTests\

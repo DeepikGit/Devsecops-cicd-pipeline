@@ -7,6 +7,9 @@ jobs:
   docker-build:
     runs-on: self-hosted
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Set Docker Tag
         run: echo "TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 

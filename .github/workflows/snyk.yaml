@@ -5,6 +5,10 @@ jobs:
   snyk-scan:
     runs-on: self-hosted
     steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
       - name: Setup Node.js (Required by Snyk CLI)
         uses: actions/setup-node@v3
         with:
