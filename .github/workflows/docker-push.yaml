@@ -21,8 +21,8 @@ jobs:
 
       - name: Tag Docker Image
         run: |
-          docker tag petclinic:ci ${{ secrets.DOCKERHUB_USERNAME }}/petclinic:ci
+          docker tag petclinic ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:latest
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/petclinic:ci
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:latest
