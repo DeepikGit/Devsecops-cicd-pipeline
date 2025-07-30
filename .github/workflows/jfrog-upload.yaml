@@ -40,8 +40,8 @@ jobs:
         run: |
           jf rt u "target/*.jar" "onmo-sports-jf-repo/" \
         env: 
-            JFROG_URL: ${{ secrets.JFROG_URL }}
-            JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
+            JFROG_CLI_JFROG_URL: ${{ secrets.JFROG_URL }}
+            JFROG_CLI_ACCESS_TOKEN: ${{ secrets.JFROG_TOKEN }}
 
       - name: Confirm Upload
         run: |
