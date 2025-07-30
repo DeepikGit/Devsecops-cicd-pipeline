@@ -24,20 +24,25 @@ jobs:
           chmod +x jfrog
           sudo mv jfrog /usr/local/bin/jf
         
-      - name: Configure JFrog CLI
-        run: |
-          if ! jf config show artifactory-server &> /dev/null; then
-            jf config add artifactory-server \
-            --artifactory-url=${{ secrets.JFROG_URL }} \
-            --user=${{ secrets.JFROG_USERNAME }} \
-            --access-token=${{ secrets.JFROG_TOKEN }} \
-            -interactive=false
-          else
-            echo "JFrog config 'artifactory-server' already exists. Skipping."
-          fi
+#      - name: Configure JFrog CLI
+#        run: |
+#          if ! jf config show artifactory-server &> /dev/null; then
+#            jf config add artifactory-server \
+#            --artifactory-url=${{ secrets.JFROG_URL }} \
+#            --user=${{ secrets.JFROG_USERNAME }} \
+#            --access-token=${{ secrets.JFROG_TOKEN }} \
+#            -interactive=false
+#          else
+#            echo "JFrog config 'artifactory-server' already exists. Skipping."
+#          fi
 
       - name: Upload Artifact [jar artifact]
         run: |
           jf rt u "target/*.jar" "onmo-sports-jf-repo/" \
-          --build-name=petclinic \
-          --build-number=${{ github.run_number }}
+        env: 
+            JFROG_URL: ${{ secrets.JFROG_URL }}
+            JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
+
+      - name: Confirm Upload
+        run: |
+          jf rt s "onmo-sports-jf-repo/*.jar"
