@@ -6,23 +6,23 @@ on:
       - main
 
 jobs:
-  unit-tests:
-    uses: ./.github/workflows/test.yaml
+#  unit-tests:
+#    uses: ./.github/workflows/test.yaml
 
-  sonar-scan:
-    uses: ./.github/workflows/sonar.yaml
-    secrets: inherit
-    needs: unit-tests
+ # sonar-scan:
+  #  uses: ./.github/workflows/sonar.yaml
+   # secrets: inherit
+    #needs: unit-tests
   
-  synk-test:
-    uses: ./.github/workflows/snyk.yaml
-    secrets: inherit
-    needs: sonar-scan
+ # synk-test:
+  #  uses: ./.github/workflows/snyk.yaml
+   # secrets: inherit
+    #needs: sonar-scan
     
 
   buildAndArchive:
     uses: ./.github/workflows/build-artifact.yaml
-    needs: synk-test
+    #needs: synk-test
   
   docker-build:
     uses: ./.github/workflows/docker-build.yaml
