@@ -34,8 +34,13 @@ jobs:
   # archive-artifact:
   #  uses: ./.github/workflows/archive-artifact.yaml
  
+## skipping for now as facing issues with uploading to JFrog
+  #jfrog-upload:
+   # uses: ./.github/workflows/jfrog-upload.yaml
+   # secrets: inherit
+   # needs: docker-build
 
-  jfrog-upload:
-    uses: ./.github/workflows/jfrog-upload.yaml
-    secrets: inherit
+  docker-push:
+    uses: ./.github/workflows/docker-push.yaml
     needs: docker-build
+    secrets: inherit
