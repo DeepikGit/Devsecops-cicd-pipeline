@@ -13,7 +13,7 @@ jobs:
 
       - name: Docker Login
         run: |
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Download Docker Image Artifact (Optional if image is built locally)
         run: |
@@ -21,8 +21,8 @@ jobs:
 
       - name: Tag Docker Image
         run: |
-          docker tag petclinic:ci ${{ secrets.DOCKER_USERNAME }}/petclinic:ci
+          docker tag petclinic:ci ${{ secrets.DOCKERHUB_USERNAME }}/petclinic:ci
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/petclinic:ci
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/petclinic:ci
