@@ -38,11 +38,11 @@ jobs:
 
       - name: Upload Artifact [jar artifact]
         run: |
-          jf rt u "target/spring-petclinic-3.2.0-SNAPSHOT.jar" "onmo-sports-jf-repo/" \
+          jf rt u "target/spring-petclinic-3.2.0-SNAPSHOT.jar" "onmo-sports-jf-repo/org/springframework/samples/spring-petclinic/3.2.0-SNAPSHOT/" \
         env: 
             JFROG_CLI_JFROG_URL: ${{ secrets.JFROG_URL }}
             JFROG_CLI_ACCESS_TOKEN: ${{ secrets.JFROG_TOKEN }}
 
       - name: Confirm Upload
         run: |
-          jf rt s "onmo-sports-jf-repo/spring-petclinic-3.2.0-SNAPSHOT.jar"
+          jf rt s "onmo-sports-jf-repo/org/springframework/samples/spring-petclinic/3.2.0-SNAPSHOT/"
