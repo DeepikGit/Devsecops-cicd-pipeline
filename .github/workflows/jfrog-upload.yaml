@@ -38,7 +38,7 @@ jobs:
 
       - name: Upload Artifact [jar artifact]
         run: |
-          jf rt u "target/*.jar" "onmo-sports-jf-repo/" \
+          jf rt u "target/spring-petclinic-3.2.0-SNAPSHOT.jar" "onmo-sports-jf-repo/" \
         env: 
             JFROG_CLI_JFROG_URL: ${{ secrets.JFROG_URL }}
             JFROG_CLI_ACCESS_TOKEN: ${{ secrets.JFROG_TOKEN }}
