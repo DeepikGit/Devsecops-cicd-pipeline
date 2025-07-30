@@ -26,11 +26,15 @@ jobs:
         
       - name: Configure JFrog CLI
         run: |
-          jf config add artifactory-server \
-          --artifactory-url=${{ secrets.JFROG_URL }} \
-          --user=${{ secrets.JFROG_USERNAME }} \
-          --apikey=${{ secrets.JFROG_TOKEN }} \
-          -interactive=false
+          if ! jf config show artifactory-server &> /dev/null; then
+            jf config add artifactory-server \
+              --artifactory-url=${{ secrets.JF_URL }} \
+              --user=${{ secrets.JF_USER }} \
+              --apikey=${{ secrets.JF_API_KEY }} \
+              --interactive=false
+          else
+            echo "JFrog config 'artifactory-server' already exists. Skipping."
+          fi
 
       - name: Upload Artifact [jar artifact]
         run: |
