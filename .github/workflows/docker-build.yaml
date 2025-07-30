@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+      
+      # not using tag but ${{ github.sha }}
       - name: Set Docker Tag
         run: echo "TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
@@ -21,7 +22,7 @@ jobs:
           path: target
 
       - name: Build Docker Image
-        run: docker build -f ./Dockerfile -t petclinic:${{ env.TAG }} .
+        run: docker build -f ./Dockerfile -t petclinic:${{ github.sha }} .
 
       - name: List Docker Images
         run: docker images
