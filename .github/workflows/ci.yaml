@@ -45,7 +45,7 @@ jobs:
     secrets: inherit
   
   docker-deploy:
-    needs: docker_push
+    #needs: docker_push
     uses: ./.github/workflows/docker-deploy.yaml
     secrets: inherit
     
