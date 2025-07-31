@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Deploy via SSH
@@ -17,6 +17,6 @@ jobs:
           script: |
             set -e
             echo "Deploying Image"
-            docker run -d --name app -p 80:80 deepikdc/onmo-sports:e8a6ef386377e4aad4106807765fe1b28b5a7e0a
+            docker run -d --name app -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}
             docker ps -a
             echo "Deployment completed successfully."
