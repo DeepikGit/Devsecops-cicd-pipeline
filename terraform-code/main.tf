@@ -98,3 +98,14 @@ module "ec2_web_server" {
   user_data         = "echo 'Hello, World!' > /var/www/html/index.html" # Example user data script
 }
 
+module "ec2_app_server" {
+  source            = "./modules/ec2_instance"
+  name              = "app-server-docker"
+  ami               = "ami-0aafffc426e129572" # Replace with a valid AMI ID
+  instance_type     = "t2.micro"
+  subnet_id         = module.public_subnet_01.subnet_id
+  vpc_security_group_ids = [module.security_group.sg_id]
+  key_name          = var.key_name
+  associate_public_ip_address = true
+  user_data         = file("./scripts/docker-install.sh")
+}
