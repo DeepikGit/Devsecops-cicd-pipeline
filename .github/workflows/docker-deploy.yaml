@@ -1,17 +1,7 @@
 name: Deploy Docker Image to EC2
 
 on:
-  workflow_call:
-    inputs:
-      image:
-        required: true
-        type: string
-      ssh_user:
-        required: true
-        type: string
-      ssh_host:
-        required: true
-        type: string
+  workflow_call
 
 jobs:
   deploy:
@@ -21,14 +11,11 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ inputs.ssh_host }}
-          username: ${{ inputs.ssh_user }}
+          host: ${{ secrets.EC2_PUBLIC_IP}}
+          username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "Deploying Image: ${{ inputs.image }}"
-            docker pull ${{ inputs.image }}
-            docker stop app || true
-            docker rm app || true
-            docker run -d --name app -p 80:80 ${{ inputs.image }}
+            echo "Deploying Image"
+            docker run -d --name app -p 80:80 deepikdc/onmo-sports:e8a6ef386377e4aad4106807765fe1b28b5a7e0a
             docker ps -a
             echo "Deployment completed successfully."
