@@ -15,6 +15,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            set -e
             echo "Deploying Image"
             docker run -d --name app -p 80:80 deepikdc/onmo-sports:e8a6ef386377e4aad4106807765fe1b28b5a7e0a
             docker ps -a
