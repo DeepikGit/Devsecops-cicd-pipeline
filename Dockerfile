@@ -1,6 +1,6 @@
 # docker file for this java application
 
-FROM eclipse-temurin:11-jre-jammy
+FROM eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
 
