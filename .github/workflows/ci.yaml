@@ -47,10 +47,9 @@ jobs:
   docker-deploy:
     needs: docker_push
     uses: ./.github/workflows/docker-deploy.yaml
+    secrets: inherit
     with:
       image: ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}
       ssh_user: ec2-user
-      ssh_host: ${{ secrets.EC2_PUBLIC_IP }}
-      EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-    secrets: inherit
+    
       
