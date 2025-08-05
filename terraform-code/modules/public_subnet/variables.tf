@@ -17,3 +17,8 @@ variable vpc_id {
   type        = string
   description = "this is the ID of the VPC"
 }
+variable map_public_ip_on_launch {
+  type        = bool
+  default     = true
+  description = "whether to assign a public IP address to instances launched in this subnet"
+}
