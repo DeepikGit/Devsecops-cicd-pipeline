@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: myapp-container
-          image: deepikdc/onmo-sports:6de702b11465e5c423401b455b30cb85166b2866
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}
           ports:
             - containerPort: 8080
