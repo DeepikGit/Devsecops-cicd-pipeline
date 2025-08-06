@@ -10,3 +10,5 @@ COPY target/*.jar petclinic.jar
 EXPOSE 8080  
 
 ENTRYPOINT ["java", "-jar", "petclinic.jar"]
+
+#checkin the pipelines
