@@ -44,8 +44,13 @@ jobs:
     needs: docker-build
     secrets: inherit
   
-  docker-deploy:
-    needs: docker-push
-    uses: ./.github/workflows/docker-deploy.yaml
+  #docker-deploy: (it was deploying to remote EC2)
+  #  needs: docker-push
+  #  uses: ./.github/workflows/docker-deploy.yaml
+  #  secrets: inherit
+  
+  gitaws-connect:
+    uses: ./.github/workflows/gitaws-connect.yaml
     secrets: inherit
-      
+  
+  
