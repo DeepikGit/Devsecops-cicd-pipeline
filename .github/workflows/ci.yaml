@@ -52,5 +52,9 @@ jobs:
   gitaws-connect:
     uses: ./.github/workflows/gitaws-connect.yaml
     secrets: inherit
+    needs: docker-push
   
-  
+  eks-deploy:
+    uses: ./.github/workflows/eks-deploy.yaml
+    secrets: inherit
+    needs: gitaws-connect
