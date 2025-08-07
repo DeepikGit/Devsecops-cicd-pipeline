@@ -33,16 +33,3 @@ variable user_data {
   default     = null
 }
 
-output "iam_user_name" {
-  value = module.iam_user.iam_user_name
-}
-
-output "access_key_id" {
-  value     = module.iam_user.access_key_id
-  sensitive = true
-}
-
-output "secret_access_key" {
-  value     = module.iam_user.secret_access_key
-  sensitive = true
-}

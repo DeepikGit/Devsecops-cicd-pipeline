@@ -22,3 +22,16 @@ output name {
   value = var.name
   description = "The name tag of the EC2 instance"
 }
+output "iam_user_name" {
+  value = module.iam_user.iam_user_name
+}
+
+output "access_key_id" {
+  value     = module.iam_user.access_key_id
+  sensitive = true
+}
+
+output "secret_access_key" {
+  value     = module.iam_user.secret_access_key
+  sensitive = true
+}
