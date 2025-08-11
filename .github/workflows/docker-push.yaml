@@ -30,7 +30,7 @@ jobs:
 
       - name: Update Kubernetes manifest with new image tag
         run: |
-          sed -i "s|\( *image: \).*|\1${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}|" kubernetes/deployment.yaml
+          sed -i "s|\(image: *\).*|\1${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}|" kubernetes/deployment.yaml
 
       - name: Commit and push changes
         run: |
