@@ -22,9 +22,9 @@ jobs:
     needs: sonar-scan
     
 
-  #buildAndArchive:
-    #uses: ./.github/workflows/build-artifact.yaml
-    #needs: synk-test
+  buildAndArchive:
+    uses: ./.github/workflows/build-artifact.yaml
+    needs: synk-test
   
   #docker-build:
     #uses: ./.github/workflows/docker-build.yaml
