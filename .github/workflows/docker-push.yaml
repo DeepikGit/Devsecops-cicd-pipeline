@@ -27,3 +27,37 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}
 
+
+      - name: Update Kubernetes manifest with new image tag
+        run: |
+          set -e
+          FILE="kubernetes/deployment.yaml"
+          IMAGE_LINE_BEFORE=$(grep -E '^\s*image:' "$FILE" || true)
+
+          echo "Before update: $IMAGE_LINE_BEFORE"
+
+          sed -i -E "s|(^\s*image:\s*).*|\1${{ secrets.DOCKERHUB_USERNAME }}/onmo-sports:${{ github.sha }}|" "$FILE"
+
+          IMAGE_LINE_AFTER=$(grep -E '^\s*image:' "$FILE" || true)
+          echo "After update: $IMAGE_LINE_AFTER"
+
+          if [ "$IMAGE_LINE_BEFORE" = "$IMAGE_LINE_AFTER" ]; then
+            echo "No image line was updated. Check regex or file path."
+            exit 1
+          fi
+
+          echo " Image line updated in $FILE"
+          cat "$FILE"
+
+      - name: Commit and push changes
+        run: |
+          set -e
+          git config --global user.email "dpkashrm@gmail.com"
+          git config --global user.name "DeepikGit"
+          git add kubernetes/deployment.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update image tag to ${GITHUB_SHA}"
+            git push
+          fi
