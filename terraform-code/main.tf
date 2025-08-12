@@ -170,33 +170,33 @@ module "iam" {
   eks_node_role_name    = "eks-node-role"
 }
 
-module "eks_cluster" {
-  source = "./modules/eks_cluster"
+#module "eks_cluster" {
+#  source = "./modules/eks_cluster"
 
-  cluster_name        = "my-eks-cluster"
-  cluster_role_arn    = module.iam.eks_cluster_role_arn
-  subnet_ids          = [module.public_subnet_01.subnet_id, module.public_subnet_02.subnet_id]
-  security_group_ids = [module.eks_security_group.sg_id]
-  kubernetes_version  = "1.29"
-  environment         = "dev"
-}
+#  cluster_name        = "my-eks-cluster"
+#  cluster_role_arn    = module.iam.eks_cluster_role_arn
+#  subnet_ids          = [module.public_subnet_01.subnet_id, module.public_subnet_02.subnet_id]
+#  security_group_ids = [module.eks_security_group.sg_id]
+#  kubernetes_version  = "1.29"
+#  environment         = "dev"
+#}
 
-module "eks_node_group" {
-  source = "./modules/eks_node_group"
+#module "eks_node_group" {
+#  source = "./modules/eks_node_group"
 
-  cluster_name     = module.eks_cluster.eks_cluster_name
-  node_group_name  = "dev-node-group"
-  node_role_arn    = module.iam.eks_node_role_arn
-  subnet_ids        = [module.public_subnet_01.subnet_id, module.public_subnet_02.subnet_id]
-  desired_size     = 2
-  max_size         = 3
-  min_size         = 1
-  disk_size        = 20
-  instance_type    = "t3.medium"
-  ec2_ssh_key      = "key_vwl"
-  environment      = "dev"
-  security_group_id = module.eks_security_group.sg_id
-}
+#  cluster_name     = module.eks_cluster.eks_cluster_name
+#  node_group_name  = "dev-node-group"
+#  node_role_arn    = module.iam.eks_node_role_arn
+#   subnet_ids        = [module.public_subnet_01.subnet_id, module.public_subnet_02.subnet_id]
+#  desired_size     = 2
+#  max_size         = 3
+#  min_size         = 1
+#  disk_size        = 20
+#  instance_type    = "t3.medium"
+#  ec2_ssh_key      = "key_vwl"
+#  environment      = "dev"
+#  security_group_id = module.eks_security_group.sg_id
+#}
 
 module "iam_user" {
   source     = "./modules/iam_user"

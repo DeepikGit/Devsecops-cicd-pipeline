@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 jobs:
-  #unit-tests:
-    #uses: ./.github/workflows/test.yaml
+  unit-tests:
+    uses: ./.github/workflows/test.yaml
 
   #sonar-scan:
     #uses: ./.github/workflows/sonar.yaml
@@ -22,40 +22,42 @@ jobs:
     #needs: sonar-scan
     
 
-  buildAndArchive:
-    uses: ./.github/workflows/build-artifact.yaml
+  #buildAndArchive:
+    #uses: ./.github/workflows/build-artifact.yaml
     #needs: synk-test
   
-  docker-build:
-    uses: ./.github/workflows/docker-build.yaml
-    needs: buildAndArchive
+  #docker-build:
+    #uses: ./.github/workflows/docker-build.yaml
+    #needs: buildAndArchive
 
 
   #########  combined this with build-artifact
   # archive-artifact:
   #  uses: ./.github/workflows/archive-artifact.yaml
  
-## skipping for now as facing issues with uploading to JFrog
+  ############  skipping for now as facing issues with uploading to JFrog
   #jfrog-upload:
    # uses: ./.github/workflows/jfrog-upload.yaml
    # secrets: inherit
    # needs: docker-build
 
-  docker-push:
-    uses: ./.github/workflows/docker-push.yaml
-    needs: docker-build
-    secrets: inherit
+  #docker-push:
+    #uses: ./.github/workflows/docker-push.yaml
+    #needs: docker-build
+    #secrets: inherit
   
-  #docker-deploy: (it was deploying to remote EC2)
+  ############docker-deploy: (it was deploying to remote EC2)
   #  needs: docker-push
   #  uses: ./.github/workflows/docker-deploy.yaml
   #  secrets: inherit
   
+  ##### git hub connect and eks deploy
   #gitaws-connect:
   #  uses: ./.github/workflows/gitaws-connect.yaml
   #  secrets: inherit
   #  needs: docker-push
   
+  #### Eks deploy using github actions
   #eks-deploy:
   #  uses: ./.github/workflows/eks-deploy.yaml
   #  secrets: inherit

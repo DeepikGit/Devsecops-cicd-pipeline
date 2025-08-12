@@ -42,11 +42,11 @@ jobs:
           echo "After update: $IMAGE_LINE_AFTER"
 
           if [ "$IMAGE_LINE_BEFORE" = "$IMAGE_LINE_AFTER" ]; then
-            echo "❌ No image line was updated. Check regex or file path."
+            echo "No image line was updated. Check regex or file path."
             exit 1
           fi
 
-          echo "✅ Image line updated in $FILE"
+          echo " Image line updated in $FILE"
           cat "$FILE"
 
       - name: Commit and push changes
@@ -56,7 +56,7 @@ jobs:
           git config --global user.name "DeepikGit"
           git add kubernetes/deployment.yaml
           if git diff --cached --quiet; then
-            echo "⚠️ No changes to commit."
+            echo "No changes to commit."
           else
             git commit -m "Update image tag to ${GITHUB_SHA}"
             git push
