@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: SonarQube Scan (Maven)
+      - name: SonarQube Scan (by Maven)
         run: |
           mvn compile sonar:sonar -DskipTests \
             -Dsonar.organization=deepikgit \
@@ -20,7 +20,7 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
 
-      - name: SonarQube Scan (CLI)
+      - name: SonarQube Scan (by CLI)
         run: |
           sonar-scanner \
           -Dsonar.projectKey=DeepikGit_Devsecops-cicd-pipeline \
