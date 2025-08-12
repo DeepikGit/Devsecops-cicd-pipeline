@@ -16,10 +16,10 @@ jobs:
     secrets: inherit
     needs: unit-tests
   
-  #synk-test:
-    #uses: ./.github/workflows/snyk.yaml
-    #secrets: inherit
-    #needs: sonar-scan
+  synk-test:
+    uses: ./.github/workflows/snyk.yaml
+    secrets: inherit
+    needs: sonar-scan
     
 
   #buildAndArchive:
