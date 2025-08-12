@@ -41,10 +41,10 @@ jobs:
    # secrets: inherit
    # needs: docker-build
 
-  #docker-push:
-    #uses: ./.github/workflows/docker-push.yaml
-    #needs: docker-build
-    #secrets: inherit
+  docker-push:
+    uses: ./.github/workflows/docker-push.yaml
+    needs: docker-build
+    secrets: inherit
   
   ############docker-deploy: (it was deploying to remote EC2)
   #  needs: docker-push
