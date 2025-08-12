@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: myapp-container
-          image: deepikdc/onmo-sports:975159917a94004e4727d49b95509a6ecfeaa696
+          image: deepikdc/onmo-sports:c4c8c8ecc4b97d0b3711af4d9c91c4d08f4205d8
           ports:
             - containerPort: 8080
