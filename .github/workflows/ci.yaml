@@ -26,9 +26,9 @@ jobs:
     uses: ./.github/workflows/build-artifact.yaml
     needs: synk-test
   
-  #docker-build:
-    #uses: ./.github/workflows/docker-build.yaml
-    #needs: buildAndArchive
+  docker-build:
+    uses: ./.github/workflows/docker-build.yaml
+    needs: buildAndArchive
 
 
   #########  combined this with build-artifact
