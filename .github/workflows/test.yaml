@@ -12,5 +12,5 @@ jobs:
 
       - name: unit test
         run:
-          echo "Running unit tests..."
+          echo "Running unit tests...."
           mvn test
